@@ -8,10 +8,11 @@ class TestAnimal(unittest.TestCase):
         pass
 
     def test_animal_creation(self):
-        betta = zoolandia.Betta()
-        a_animal = zoolandia.Animal("Bob", betta)
-        self.assertEqual(a_animal.name, "Bob")
-        self.assertIsInstance(a_animal.species, zoolandia.Betta)
+        bob = zoolandia.Betta("orange","Bob")
+
+        self.assertEqual(bob.color, "orange")
+        self.assertEqual(bob, "Bob")
+        self.assertIsInstance(a_animal.species, zoolandia.BettaTrifasciata)
 
 class TestSpecies(unittest.TestCase):
 
@@ -24,26 +25,34 @@ class TestSpecies(unittest.TestCase):
         self.assertEqual(species.geo_region, "")
 
 class TestHabitat(unittest.TestCase):
+
     def test_name_empty_string_default(self):
         habitat = zoolandia.Habitat()
         self.assertEqual(habitat.name, "")
 
     def test_members_default(self):
-        species = zoolandia.Species()
-        self.assertEqual(habitat.species, "")
+        habitat = zoolandia.Habitat()
+        self.assertIsInstance(habitat.members, set)
+
+    def test_add_member(self):
+        habitat = zoolandia.Habitat()
+        bob = zoolandia.Habitat("orange","Bob")
+        aquarium.add_member(bob)
+
+        self.assertIn(bob, aquarium.members)
 
 class TestWalking(unittest.TestCase):
     def test_legs_zero_default(self):
         walking = zoolandia.Walking()
-        self.assertEqual(habitat.walking, "")
+        self.assertEqual(walking.legs, 0)
 
-    def test_members_default(self):
-        species = zoolandia.Walking()
-        self.assertEqual(habitat.walking, "")
+    def test_walk_speed_zero_default(self):
+        walking = zoolandia.Walking()
+        self.assertEqual(walking.walk_speed, 0)
 
 class TestSwimming(unittest.TestCase):
     def test_appendages(self):
-        swimming= zoolandia.Walking()
+        swimming= zoolandia.Swimming()
         self.assertEqual(swimming.fins, False)
         self.assertEqual(swimming.flippers, False)
         self.assertEqual(swimming.web_feet, False)
