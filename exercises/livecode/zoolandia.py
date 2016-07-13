@@ -1,14 +1,8 @@
 class Animal:
 
-    def __init__(self):
-        self.species = None
-        self. name = ""
-
-    def add_member(self, member):
-        self.members.add(member)
-
-    def remove_member(self, member):
-        self.members.remove(member)
+    def __init__(self, name, species):
+        self.species = species
+        self. name = name
 
 class Species:
     def __init__(self):
@@ -19,11 +13,10 @@ class BettaTrifasciata(Species):
     def __init__(self, color):
         self.color = color
         self.common_name = "Betta fish"
-        self.geo.region = "Asia"
 
 class Betta(Animal):
-    def __init__(self, color):
-        Animal.__init__= (self, name, BettaTrifasciata(color)) # calls constructor function for Animal
+    def __init__(self, color, name):
+        Animal.__init__(self, name, BettaTrifasciata(color)) # calls constructor function for Animal
 
 class Habitat:
     def __init__(self):
@@ -32,6 +25,9 @@ class Habitat:
 
     def add_member(self, member):
         self.members.add(member)
+
+    def remove_member(self, member):
+        self.members.remove(member)
 
 class Aquarium(Habitat):
     def __init__(self, water_type):
